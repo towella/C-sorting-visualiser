@@ -23,12 +23,6 @@ void Bogosort(long (*sortArr)[], int len, SDL_Renderer * renderer, bool fast) {
             long temp = (*sortArr)[randIndicies[i]];
             (*sortArr)[randIndicies[i]] = (*sortArr)[randIndicies[i+1]];
             (*sortArr)[randIndicies[i+1]] = temp;
-            
-            // render more often with red line if slow
-            if (!fast) {
-                renderSort(sortArr, len, renderer, i);
-                SDL_Delay(SLOW_DELAY);
-            }
         }
 
         // check if solved
@@ -41,6 +35,9 @@ void Bogosort(long (*sortArr)[], int len, SDL_Renderer * renderer, bool fast) {
             }
         }
         renderSort(sortArr, len, renderer, -1);
+        if (!fast) {
+            SDL_Delay(SLOW_DELAY);
+        }
         SDL_Delay(DELAY);
     }
     finished(sortArr, len, renderer);

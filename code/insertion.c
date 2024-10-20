@@ -24,11 +24,14 @@ void Insertion(long (*sortArr)[], int len, SDL_Renderer * renderer, bool fast) {
             placement--;
         }
 
+
         // render after pass
         if (fast) {
             renderSort(sortArr, len, renderer, -1);  // -1 indicate no line required    
         } else {
-            renderSort(sortArr, len, renderer, i);
+            renderSort(sortArr, len, renderer, placement + 1);  // highlight position value has been inserted
+            SDL_Delay(SLOW_DELAY);
+            renderSort(sortArr, len, renderer, i + 1);  // i+1 to highlight value being inserted
             SDL_Delay(SLOW_DELAY);
         }
         SDL_Delay(DELAY);
